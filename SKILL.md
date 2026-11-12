@@ -54,6 +54,8 @@ Use the GitHub repository as the shared source of truth. On a requested change, 
 
 ## Simple user-facing tracker
 
+Maintain and present the same existing list by default, not a new list for every run. Read its latest state before updating; reconcile new evidence and deduplicate people while preserving user edits, notes, exclusions and verified outreach statuses. Show the updated list at its existing link/location with a brief change summary. Create a separate list only when the user explicitly requests one. See [records.md](references/records.md) for update and conflict handling.
+
 Default CSV exports contain only Name, Company, LinkedIn, Email, Relevance, Status, Notes and Source. Do not expose market coverage, nested JSON, duplicate invitation/outreach columns or repetitive confirmation text. Keep audit evidence and detailed verification private in JSONL; `export --detailed` is an optional audit export, not the default deliverable.
 
 Keep one current `status` per person (for example Not contacted, Invitation pending, Connected, Messaged, Replied, Call arranged, Previously contacted, Skipped, Excluded). Update it immediately after verified actions and reconcile legacy `outreach` fields. Use `relevance` for one short reason this person is on the list. Notes should contain only material caveats, skip reasons or a concise next action/date. Keep message text and dated contact events in the private history, not extra default tracker columns. Do not say an invitation is pending merely from a generic email-sent event. Preserve all original audit details separately.

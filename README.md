@@ -54,3 +54,7 @@ See [SKILL.md](SKILL.md), [discovery](references/discovery.md), [records](refere
 Check acceptance and prior conversations before preparing another approach. Keep the same simple tracker: Invitation pending → Connected → Messaged → Replied → Call arranged, using only verified states. Agency specialists and in-house recruiters with unknown remit need different next steps; see [the follow-up workflow](references/outreach.md#after-a-linkedin-invitation).
 
 Cold-message text is intentionally blank until the user provides it or asks for drafting. A day or two after acceptance and one follow-up about a week after messaging are optional practical starting points, not proven optimal timing. No messages or follow-ups are automatically sent or scheduled. Measure useful replies, introductions and calls, not just connections.
+
+## One continuing list
+
+Each run updates and presents the existing list, not a new list every time. Reconcile new people and evidence into the current sheet or file, preserve user edits and previous outreach statuses, and return the same link/location with a short change summary. Create a separate list only when explicitly requested. Private exports and audit files are staging artifacts, not replacement lists.

@@ -51,6 +51,17 @@ Query generation is not query execution. The query CSV contains a stable `query_
 
 Run `python3 scripts/recruiter_list.py coverage --input /path/to/query-ledger.csv --output /path/to/coverage.json` to summarize. Counts are search-result records examined, not distinct people or live-profile verifications. Separately report deduped people and verification dimensions. Generated, attempted, executed and blocked totals must remain distinguishable. A skipped or blocked query means the planned coverage was not completed.
 
+## Update the existing list
+
+Treat the user's current sheet or list as the continuing source of truth. Before each run, read its latest contents and any approved private history. Reconcile discoveries into that list rather than producing another deliverable:
+- Match stable identities, such as canonical profile URLs. Update existing people and append only genuinely new people; do not merge on names alone.
+- Preserve user-written fields, notes, exclusions, opt-outs and verified invitation/message/reply/call states. New discovery must not reset someone to Not contacted or undo a skip. Resolve conflicting evidence explicitly; retain uncertainty rather than silently overwriting.
+- Apply targeted edits to the latest version. If it changed during research, re-read and merge rather than replacing it with a stale snapshot.
+- Keep the existing destination, sharing permissions and simple columns. Present only the updated list using the same link/location, optionally summarizing additions, changes and unresolved checks. Do not present a second full list, new sheet or alternate version by default.
+- Create a separate list only when the user explicitly asks. If the original is unavailable or cannot be edited safely, report the blocker and proposed changes; do not silently substitute a new list.
+
+Backups and audit records may remain private; they are not new user-facing lists. Local helper exports are staging artifacts, not permission to replace the current list or publish private records. Updating a list does not authorize outreach.
+
 ## Simple user-facing tracker
 
 Default CSV exports contain only Name, Company, LinkedIn, Email, Relevance, Status, Notes and Source. Do not expose market coverage, nested JSON, duplicate invitation/outreach columns or repetitive confirmation text. Keep audit evidence and detailed verification private in JSONL; `export --detailed` is an optional audit export, not the default deliverable.
