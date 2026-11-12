@@ -40,7 +40,7 @@ Use available authorized search/connectors or user-supplied exports to collect e
 
 ## Prepare outreach only when requested
 
-Read [outreach.md](references/outreach.md). Choose a channel from actual contact availability and preferences. Prepare an exact recipient, reason, message and any attachment for review. Research or drafting does not authorize sending. Do not build unauthorized LinkedIn scraping, automatic invitations or automated DMs into the workflow. Use a manual LinkedIn path or a genuinely authorized platform integration.
+Read [outreach.md](references/outreach.md). Choose a channel from actual contact availability and preferences. For requested drafting, prepare an exact recipient, reason, message and any attachment for review. If the user will supply the cold message later, leave it blank and continue discovery without drafting. Use the post-invitation workflow in that reference to check acceptance and prior messages, distinguish agency/in-house approaches, and track replies and calls without automatic sends. Research or drafting does not authorize sending. Do not build unauthorized LinkedIn scraping, automatic invitations or automated DMs into the workflow. Use a manual LinkedIn path or a genuinely authorized platform integration.
 
 ## Report results honestly
 
@@ -56,4 +56,4 @@ Use the GitHub repository as the shared source of truth. On a requested change, 
 
 Default CSV exports contain only Name, Company, LinkedIn, Email, Relevance, Status, Notes and Source. Do not expose market coverage, nested JSON, duplicate invitation/outreach columns or repetitive confirmation text. Keep audit evidence and detailed verification private in JSONL; `export --detailed` is an optional audit export, not the default deliverable.
 
-Keep one current `status` per person (for example Not contacted, Invitation pending, Connected, Previously contacted, Skipped, Excluded, Replied). Update it immediately after verified actions and reconcile legacy `outreach` fields. Use `relevance` for one short reason this person is on the list. Notes should contain only material caveats or skip reasons. Do not say an invitation is pending merely from a generic email-sent event. Preserve all original audit details separately.
+Keep one current `status` per person (for example Not contacted, Invitation pending, Connected, Messaged, Replied, Call arranged, Previously contacted, Skipped, Excluded). Update it immediately after verified actions and reconcile legacy `outreach` fields. Use `relevance` for one short reason this person is on the list. Notes should contain only material caveats, skip reasons or a concise next action/date. Keep message text and dated contact events in the private history, not extra default tracker columns. Do not say an invitation is pending merely from a generic email-sent event. Preserve all original audit details separately.

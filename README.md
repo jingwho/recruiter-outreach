@@ -48,3 +48,9 @@ Installed copies do not update automatically. Review releases/commits, then pull
 Initial release: local helpers tested; live discovery quality varies by source and access. Validate the discovery workflow on a small sample and report checked versus unverified leads before scaling. Do not interpret sample results as exhaustive coverage or a guaranteed path to interviews.
 
 See [SKILL.md](SKILL.md), [discovery](references/discovery.md), [records](references/records.md), and [outreach](references/outreach.md).
+
+## After invitations
+
+Check acceptance and prior conversations before preparing another approach. Keep the same simple tracker: Invitation pending → Connected → Messaged → Replied → Call arranged, using only verified states. Agency specialists and in-house recruiters with unknown remit need different next steps; see [the follow-up workflow](references/outreach.md#after-a-linkedin-invitation).
+
+Cold-message text is intentionally blank until the user provides it or asks for drafting. A day or two after acceptance and one follow-up about a week after messaging are optional practical starting points, not proven optimal timing. No messages or follow-ups are automatically sent or scheduled. Measure useful replies, introductions and calls, not just connections.
