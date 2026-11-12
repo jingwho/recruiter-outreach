@@ -1,0 +1,8 @@
+{
+  "market": "Austin",
+  "companies": ["Example Software", "Sample Payments"],
+  "role_scope": ["first_line_people_manager"],
+  "include_ic": false,
+  "excluded_remits": ["executive_only"],
+  "notes": "Synthetic company names. Replace with an existing target-employer list. Recruiters may be located outside Austin."
+}
