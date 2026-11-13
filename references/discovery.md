@@ -36,7 +36,7 @@ Directories may target employers buying recruiting services. “Available” can
 
 ## Optional scale and contact tools
 
-Apollo people search supports company/title/location filters; it can discover recruiting employees and enrich qualified contacts. LinkedIn Sales Navigator supports saved people/company searches. These are optional, potentially paid adapters, not required dependencies. Verify current account access, limits, cost and export/API permissions before use. Never promise a paid feature from a free account.
+Apollo people search supports company/title/location filters; it can discover recruiting employees and enrich qualified contacts. LinkedIn Sales Navigator supports saved people/company searches. These are optional, potentially paid adapters, not required dependencies. Do not wait for Apollo/enrichment or a new vacancy before sending an already authorized blank invitation to a verified eligible recruiter. Verify current account access, limits, cost and export/API permissions before use. Never promise a paid feature from a free account.
 
 - Apollo filters: https://knowledge.apollo.io/hc/en-us/articles/4412665755661-Use-Search-Filters-to-Find-Prospects
 - Apollo pricing: https://www.apollo.io/pricing
@@ -57,4 +57,4 @@ Prefer a small pilot before scaling: compare distinct relevant people, ambiguous
 
 ## Manage the verification bottleneck
 
-Generate a reusable query plan, but execute a small diverse batch before expanding every company/title combination. Record each query's execution status using the ledger in records.md. If discovery produces more leads than can be checked within the budget, pause new searches and verify the highest-relevance candidates. Preserve the remaining queue rather than labeling it complete. Report which verification dimensions remain unknown; a completed search is not a verified shortlist.
+Generate a reusable query plan, but execute a small diverse batch before expanding every company/title combination. Record each query's execution status using the ledger in records.md. For authorized invitation runs, verify and immediately invite each eligible person before researching the next; never accumulate verified eligible people into a later send queue. If a search surfaces more leads than can be checked within the budget, retain only the unverified backlog, clearly labeled incomplete, and process it one person at a time. Research-only runs can retain a verification backlog without sending. Report which verification dimensions remain unknown; a completed search is not a verified shortlist.

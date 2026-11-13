@@ -1,6 +1,6 @@
 # Product Recruiter Outreach
 
-A portable agent skill for building an evidence-backed recruiter shortlist and preparing human-reviewed outreach. Use existing employer lists and people databases instead of rebuilding a job board.
+A portable agent skill for building an evidence-backed recruiter shortlist and preparing outreach or carrying out explicitly authorized blank-invitation runs. Use existing employer lists and people databases instead of rebuilding a job board.
 
 ## What it does
 
@@ -51,9 +51,9 @@ See [SKILL.md](SKILL.md), [discovery](references/discovery.md), [records](refere
 
 ## Optional authorized invitation run
 
-With explicit owner authorization for a defined batch, the agent sends newly found eligible recruiters blank LinkedIn invitations during the run. It checks existing connections, pending invitations, prior contact, exclusions and pauses first. No mass bot or unauthorized platform automation is included.
+With explicit owner authorization for a defined batch, the agent interleaves discovery and sending: immediately after verifying each eligible recruiter, it sends a blank LinkedIn invitation before researching the next candidate. There is no end-of-run queue or wait for a batch, new opening, Apollo enrichment, arbitrary pause or extra generic confirmation within the authorized scope. It checks existing connections, pending invitations, prior contact, exclusions and pauses first. No mass bot or unauthorized platform automation is included.
 
-Each confirmed send gets one acceptance check due exactly 72 hours later through a supported durable scheduler. Batch within a run without changing individual due times; deduplicate scheduling and verify setup. If scheduling or LinkedIn access is unavailable, the agent reports that limit. The local `invitation_plan.py` helper computes plans only and makes no network calls.
+The 72-hour delay applies only to checking acceptance, never to sending invitations. Each confirmed send gets one acceptance check due exactly 72 hours later through a supported durable scheduler. Batch within a run without changing individual due times; deduplicate scheduling and verify setup. If scheduling or LinkedIn access is unavailable, the agent reports that limit. The local `invitation_plan.py` helper computes plans only and makes no network calls.
 
 The check updates the same tracker to Connected, Invitation pending or Connection unknown while preserving user edits and history. It sends no messages or emails. Cold-message text stays blank until separately requested. Standalone use remains read-only unless the owner authorizes invitations.
 

@@ -53,3 +53,15 @@ class InvitationTests(unittest.TestCase):
             self.assertEqual(result['status'], 'Not contacted')
             self.assertEqual(result['blocker'], blocker)
         self.assertEqual(m.profile_invite_action(full_profile_verified=True, menu_opened=True)['availability'], 'unavailable')
+
+    def test_verified_authorized_candidate_is_immediate_without_enrichment(self):
+        row = self.record(vacancy_status='unknown', email=None, apollo_enriched=False)
+        self.assertEqual(m.next_candidate_action(row, authorized=True, connection_state='not_connected', connect_available=True), 'send_blank_invitation_now')
+
+    def test_immediacy_does_not_override_gates(self):
+        self.assertNotEqual(m.next_candidate_action(self.record(), connection_state='not_connected', connect_available=True), 'send_blank_invitation_now')
+        for patch in [{'paused':True}, {'outreach':'uncertain'}, {'category':'excluded'}]:
+            row=self.record(); row.update(patch)
+            self.assertNotEqual(m.next_candidate_action(row, authorized=True, connection_state='not_connected', connect_available=True), 'send_blank_invitation_now')
+        self.assertNotEqual(m.next_candidate_action(self.record(), authorized=True, connection_state='pending', connect_available=True), 'send_blank_invitation_now')
+        self.assertNotEqual(m.next_candidate_action(self.record(), authorized=True, connection_state='not_connected'), 'send_blank_invitation_now')

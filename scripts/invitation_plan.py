@@ -57,3 +57,15 @@ def profile_invite_action(*, full_profile_verified=False, direct_connect=False,
         return {'action': 'connect_available', 'availability': 'verified'}
     return {'action': 'record_verified_unavailable', 'status': 'Not contacted',
             'availability': 'unavailable'}
+
+
+def next_candidate_action(record, *, authorized=False, connection_state='unknown',
+                          connect_available=False):
+    """Pure per-person decision, with no batch/enrichment/vacancy timing gate.
+
+    Host must execute a returned invitation before researching the next candidate;
+    this helper itself performs no UI, sending or scheduling.
+    """
+    if eligible_for_invite(record, authorized=authorized, connection_state=connection_state) and connect_available:
+        return 'send_blank_invitation_now'
+    return 'resolve_eligibility_or_record_blocker'
