@@ -35,3 +35,25 @@ def acceptance_check_plan(profile_url, confirmed_sent_at, *, confirmed=False, ex
 
 def observed_connection_status(observation):
     return {'accepted': 'Connected', 'pending': 'Invitation pending'}.get(observation, 'Connection unknown')
+
+
+def profile_invite_action(*, full_profile_verified=False, direct_connect=False,
+                          menu_opened=False, menu_connect=False, blocker=None):
+    """Classify observed full-profile UI, never search-result Follow/absence.
+
+    Does not grant eligibility or authorize a send; use existing scope/history gates.
+    A technical inspection failure must remain Not contacted and unverified.
+    """
+    if blocker:
+        return {'action': 'blocked', 'status': 'Not contacted',
+                'availability': 'unverified', 'blocker': blocker}
+    if not full_profile_verified:
+        return {'action': 'open_verified_full_profile', 'availability': 'unverified'}
+    if direct_connect:
+        return {'action': 'connect_available', 'availability': 'verified'}
+    if not menu_opened:
+        return {'action': 'inspect_intro_more_menu', 'availability': 'unverified'}
+    if menu_connect:
+        return {'action': 'connect_available', 'availability': 'verified'}
+    return {'action': 'record_verified_unavailable', 'status': 'Not contacted',
+            'availability': 'unavailable'}

@@ -37,3 +37,19 @@ class InvitationTests(unittest.TestCase):
         self.assertEqual(m.observed_connection_status('accepted'), 'Connected')
         self.assertEqual(m.observed_connection_status('pending'), 'Invitation pending')
         self.assertEqual(m.observed_connection_status('inaccessible'), 'Connection unknown')
+
+    def test_search_result_absence_requires_full_profile(self):
+        self.assertEqual(m.profile_invite_action()['action'], 'open_verified_full_profile')
+
+    def test_no_direct_connect_requires_intro_menu(self):
+        self.assertEqual(m.profile_invite_action(full_profile_verified=True)['action'], 'inspect_intro_more_menu')
+        self.assertEqual(m.profile_invite_action(full_profile_verified=True, menu_opened=True, menu_connect=True)['action'], 'connect_available')
+        self.assertEqual(m.profile_invite_action(full_profile_verified=True, direct_connect=True)['action'], 'connect_available')
+
+    def test_menu_failure_is_unverified_not_skipped(self):
+        for blocker in ['menu timeout', 'menu cannot open', 'email verification required', 'platform restriction']:
+            result = m.profile_invite_action(full_profile_verified=True, blocker=blocker)
+            self.assertEqual(result['availability'], 'unverified')
+            self.assertEqual(result['status'], 'Not contacted')
+            self.assertEqual(result['blocker'], blocker)
+        self.assertEqual(m.profile_invite_action(full_profile_verified=True, menu_opened=True)['availability'], 'unavailable')
