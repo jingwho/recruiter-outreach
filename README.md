@@ -41,7 +41,7 @@ Keep private run data outside this repository. Do not commit CVs, recruiter list
 
 Ask your assistant to update this repository, describing the behavior to change. It should fetch/read the current version, preserve unrelated work, edit, test and provide a commit or pull-request link when publishing is authorized. GitHub access is configured in the host assistant, not in this skill.
 
-Installed copies do not update automatically. Review releases/commits, then pull your clean checkout or replace the installed folder with the reviewed version. Keep private configuration outside the install folder so updating does not overwrite it. No automatic monitoring, sending, or scheduled updates are included.
+Installed copies do not update automatically. Review releases/commits, then pull your clean checkout or replace the installed folder with the reviewed version. Keep private configuration outside the install folder so updating does not overwrite it. The package contains no live sending or scheduler integration. Explicitly authorized runs can use the host’s supported UI and durable scheduler; unavailable capabilities must be reported, not promised.
 
 ## Release status
 
@@ -49,11 +49,13 @@ Initial release: local helpers tested; live discovery quality varies by source a
 
 See [SKILL.md](SKILL.md), [discovery](references/discovery.md), [records](references/records.md), and [outreach](references/outreach.md).
 
-## After invitations
+## Optional authorized invitation run
 
-Check acceptance and prior conversations before preparing another approach. Keep the same simple tracker: Invitation pending → Connected → Messaged → Replied → Call arranged, using only verified states. Agency specialists and in-house recruiters with unknown remit need different next steps; see [the follow-up workflow](references/outreach.md#after-a-linkedin-invitation).
+With explicit owner authorization for a defined batch, the agent sends newly found eligible recruiters blank LinkedIn invitations during the run. It checks existing connections, pending invitations, prior contact, exclusions and pauses first. No mass bot or unauthorized platform automation is included.
 
-Cold-message text is intentionally blank until the user provides it or asks for drafting. A day or two after acceptance and one follow-up about a week after messaging are optional practical starting points, not proven optimal timing. No messages or follow-ups are automatically sent or scheduled. Measure useful replies, introductions and calls, not just connections.
+Each confirmed send gets one acceptance check due exactly 72 hours later through a supported durable scheduler. Batch within a run without changing individual due times; deduplicate scheduling and verify setup. If scheduling or LinkedIn access is unavailable, the agent reports that limit. The local `invitation_plan.py` helper computes plans only and makes no network calls.
+
+The check updates the same tracker to Connected, Invitation pending or Connection unknown while preserving user edits and history. It sends no messages or emails. Cold-message text stays blank until separately requested. Standalone use remains read-only unless the owner authorizes invitations.
 
 ## One continuing list
 

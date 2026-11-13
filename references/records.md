@@ -67,3 +67,9 @@ Backups and audit records may remain private; they are not new user-facing lists
 Default CSV exports contain only Name, Company, LinkedIn, Email, Relevance, Status, Notes and Source. Do not expose market coverage, nested JSON, duplicate invitation/outreach columns or repetitive confirmation text. Keep audit evidence and detailed verification private in JSONL; `export --detailed` is an optional audit export, not the default deliverable.
 
 Keep one current `status` per person (for example Not contacted, Invitation pending, Connected, Messaged, Replied, Call arranged, Previously contacted, Skipped, Excluded). Update it immediately after verified actions and reconcile legacy `outreach` fields. Use `relevance` for one short reason this person is on the list. Notes should contain only material caveats, skip reasons or a concise next action/date. Keep message text and dated contact events in the private history, not extra default tracker columns. Do not say an invitation is pending merely from a generic email-sent event. Preserve all original audit details separately.
+
+## Invitation lifecycle
+
+Keep private `paused` and exclusion flags, verified connection observations, and immutable invitation events. A confirmed event includes canonical profile identity, `confirmed_sent_at` with timezone, action evidence and the applicable owner authorization. Acceptance-check records include `check_key`, `due_at`, scheduler ID, and scheduling/check outcome. A planned due time is not a scheduled task. Persist keys before retries and reconcile an uncertain scheduler response before creating another task. Store these details privately, not as extra default tracker columns.
+
+Use **Connection unknown** when a due check cannot establish accepted/pending state; retain the prior invitation event and explain the current uncertainty. Never overwrite a later user pause, exclusion, message/reply/call status or note with a stale check snapshot.
