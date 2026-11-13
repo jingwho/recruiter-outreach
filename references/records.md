@@ -75,3 +75,11 @@ Keep private `paused` and exclusion flags, verified connection observations, and
 Use **Connection unknown** when a due check cannot establish accepted/pending state; retain the prior invitation event and explain the current uncertainty. Never overwrite a later user pause, exclusion, message/reply/call status or note with a stale check snapshot.
 
 During an authorized invitation run, persist each verified invitation outcome immediately in the same tracker before moving to the next candidate. An unverified discovery backlog is not a send queue; do not park a verified eligible person as Ready to send for end-of-run execution. Preserve actual restrictions and uncertain outcomes rather than treating immediate outreach as permission to bypass them.
+
+## One-click profile links in the same tracker
+
+For XLSX trackers, show **Open profile** in the existing LinkedIn column as a blue, white-text native Excel hyperlink cell for each identity-verified direct LinkedIn personal profile (`/in/<slug>`). Never make search results, company pages or unverified matches into profile buttons. Keep their existing raw text/URL and verification caveat. The button is navigation only, not an invitation or message action.
+
+Use `scripts/profile_buttons.py` with a private explicit JSON array of verified profile URLs to style an existing workbook; it does not verify identities or access LinkedIn. Install `requirements.txt` for this optional workbook helper. It changes only matching LinkedIn cells and preserves statuses, notes and other sheets. Read profile identity from `cell.hyperlink.target` (fallback to the raw cell value), not the visible “Open profile” label, for deduplication and later updates. CSV exports keep raw URLs because CSV cannot store native hyperlinks/styles.
+
+Write a local staging workbook, reopen it and verify destinations/statuses/notes, then replace the same existing tracker/Library item using its normal versioning workflow. The staging path is not a new user-facing tracker. Preserve the original until readback succeeds; do not regenerate the tracker from stale JSONL. This helper is for `.xlsx`, not macro-enabled workbooks or unsupported embedded objects. Invitation eligibility, timing and authorization rules remain unchanged.

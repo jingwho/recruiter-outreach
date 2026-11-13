@@ -60,3 +60,13 @@ The check updates the same tracker to Connected, Invitation pending or Connectio
 ## One continuing list
 
 Each run updates and presents the existing list, not a new list every time. Reconcile new people and evidence into the current sheet or file, preserve user edits and previous outreach statuses, and return the same link/location with a short change summary. Create a separate list only when explicitly requested. Private exports and audit files are staging artifacts, not replacement lists.
+
+### Profile buttons in an existing Excel tracker
+
+Optional dependency: `python -m pip install -r requirements.txt`.
+
+```bash
+python scripts/profile_buttons.py --input /private/tracker.xlsx --output /private/tracker-staged.xlsx --sheet Recruiters --verified-profiles /private/verified-profiles.json
+```
+
+The private JSON file is an array of identity-verified direct LinkedIn `/in/` URLs. Matching cells become blue **Open profile** native hyperlinks; their actual destination remains available for deduplication and future reads. Search results and unverified profiles are not buttons. Statuses, notes and other sheets are preserved. Reopen and verify the staged workbook, then update the same tracker/Library item rather than creating a second list. CSV continues to use raw URLs. The helper neither contacts anyone nor opens a browser.
