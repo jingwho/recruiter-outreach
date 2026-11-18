@@ -83,3 +83,25 @@ For XLSX trackers, show **Open profile** in the existing LinkedIn column as a bl
 Use `scripts/profile_buttons.py` with a private explicit JSON array of verified profile URLs to style an existing workbook; it does not verify identities or access LinkedIn. Install `requirements.txt` for this optional workbook helper. It changes only matching LinkedIn cells and preserves statuses, notes and other sheets. Read profile identity from `cell.hyperlink.target` (fallback to the raw cell value), not the visible “Open profile” label, for deduplication and later updates. CSV exports keep raw URLs because CSV cannot store native hyperlinks/styles.
 
 Write a local staging workbook, reopen it and verify destinations/statuses/notes, then replace the same existing tracker/Library item using its normal versioning workflow. The staging path is not a new user-facing tracker. Preserve the original until readback succeeds; do not regenerate the tracker from stale JSONL. This helper is for `.xlsx`, not macro-enabled workbooks or unsupported embedded objects. Invitation eligibility, timing and authorization rules remain unchanged.
+
+
+## Private personal-location verification
+
+Do not add audit columns to the simple tracker. Store a `linkedin_location_check` object in the private JSONL record, separately from `market_coverage`, recruiting scope and historical outreach. A synthetic example:
+
+```json
+{
+  "basis": "full_linkedin_profile",
+  "status": "verified",
+  "profile_url": "https://www.linkedin.com/in/synthetic-person",
+  "location_text": "Austin, Texas, United States",
+  "country_code": "US",
+  "locality": "Austin",
+  "observed_at": "2026-11-18T15:59:00Z",
+  "run_id": "synthetic-run-2"
+}
+```
+
+Populate this only after opening the same person's full profile in the current run. Copy `location_text` exactly from the personal location field; normalize country/locality only when unambiguous. Never derive it from headline territory, job locations or company offices. Unknown/blocked/conflicting evidence cannot be marked verified. Generate a new run ID for each run and refresh each person's evidence; do not pass an old stored run ID as the current one. Both the profile identity and configured geography are checked by `location_gate`; missing/malformed, wrong-identity, future, naive or over-24-hour-old checks fail closed.
+
+Location mismatch changes qualification, not historical outreach: preserve Invitation pending/Connected/etc. and add a concise location caveat. For never-contacted foreign profiles, mark excluded; unknown profiles remain needs checking. Do not withdraw pending invitations without separate authorization. Conflicting merged location evidence forces needs checking, preserving the original source records.

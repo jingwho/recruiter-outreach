@@ -15,7 +15,7 @@ Use the user's geography, role scope, work arrangement and exclusions. Distingui
 
 ## Discover broadly, qualify selectively
 
-Read [discovery.md](references/discovery.md) for source order, query patterns and source limitations. Run broad recruiting-title searches at target employers alongside a separate product-specialist stream and agency-directory searches. Search both local recruiters and recruiters elsewhere covering the target employers/market.
+Read [discovery.md](references/discovery.md) for source order, query patterns and source limitations. Run broad recruiting-title searches at target employers alongside a separate product-specialist stream and agency-directory searches. Search within the owner-approved recruiter geography. Coverage of the target market alone is not a location match.
 
 Do not require the phrase “product management” in every person's profile. Keep these categories distinct:
 - **Strong match:** Supported product-recruiting experience and relevant geography/scope.
@@ -24,6 +24,16 @@ Do not require the phrase “product management” in every person's profile. Ke
 - **Excluded:** Explicitly mismatched remit or user exclusion, with reason.
 
 Do not upgrade a repost, like, past employer or snippet keyword into current ownership. Requisition-level claims require the relevant employer, job identifier and supporting source. Company-level discovery does not require assigning requisition owners.
+
+## Mandatory personal-location gate
+
+For **every recruiter on every run**, open the actual full LinkedIn personal profile, confirm identity, and read the person's current location in the profile introduction. Record the exact displayed location, normalized country/locality, profile URL, UTC observation time and current run ID privately. Recheck immediately before any invitation, including retries. Search snippets, directories, company headquarters, employer offices, US job postings and a claim to cover the US are not substitutes.
+
+Apply the user's configured **personal recruiter location**, separately from hiring-market coverage and recruiting remit. In the Austin/US example, the recruiter must be personally US-based; Austin is preferred, with other US locations permitted for national remote roles. Do not silently broaden a city-only request to the whole country. Neither a good product remit nor a Connect button overrides location.
+
+A foreign location is out of scope. Missing, ambiguous, conflicting, inaccessible or stale profile evidence is **unverified**, not eligible. Keep the person out of the actionable shortlist until resolved. Preserve prior invitation/connection status even when the person is newly excluded by location: do not delete the row or imply an invitation was withdrawn. Auditing or correcting a list does not authorize withdrawals, messages, or new sends.
+
+The planning helpers now fail closed unless supplied with configured geography and a fresh direct-profile check from the current run. This checks supplied evidence only; the host still must actually open each profile using a permitted method. See records.md for the private evidence schema.
 
 ## Keep a private, reviewable record
 

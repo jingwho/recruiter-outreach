@@ -13,7 +13,7 @@ STATES = {'none', 'drafted', 'approved', 'sent', 'uncertain', 'replied', 'closed
 EXPORT_FIELDS = ['name', 'company', 'profile_url', 'category', 'recruiter_type',
                  'recruiter_location', 'market_coverage', 'role_scope', 'email',
                  'email_source', 'email_status', 'notes', 'opportunities', 'events',
-                 'assessments',
+                 'assessments', 'linkedin_location_check',
                  'outreach', 'do_not_contact', 'evidence', 'conflicts', 'source_records']
 
 SIMPLE_FIELDS = ['Name', 'Company', 'LinkedIn', 'Email', 'Relevance', 'Status', 'Notes', 'Source']
@@ -121,7 +121,7 @@ def dedupe(records):
             if evidence not in target['evidence']:
                 target['evidence'].append(evidence)
         conflicts = target.setdefault('conflicts', [])
-        for field in ('name', 'company', 'category', 'email', 'assessments'):
+        for field in ('name', 'company', 'category', 'email', 'assessments', 'linkedin_location_check'):
             if target.get(field) != item.get(field):
                 if field not in conflicts:
                     conflicts.append(field)
@@ -256,3 +256,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

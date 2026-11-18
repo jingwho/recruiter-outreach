@@ -70,3 +70,11 @@ python scripts/profile_buttons.py --input /private/tracker.xlsx --output /privat
 ```
 
 The private JSON file is an array of identity-verified direct LinkedIn `/in/` URLs. Matching cells become blue **Open profile** native hyperlinks; their actual destination remains available for deduplication and future reads. Search results and unverified profiles are not buttons. Statuses, notes and other sheets are preserved. Reopen and verify the staged workbook, then update the same tracker/Library item rather than creating a second list. CSV continues to use raw URLs. The helper neither contacts anyone nor opens a browser.
+
+## Required location check before outreach
+
+Each recruiter must be checked on their **full LinkedIn personal profile on every run**, not just in search results. Personal location must match the owner's configured geography. US market coverage, a US employer or a US vacancy cannot qualify a recruiter living abroad. Unknown or inaccessible locations fail closed. Keep location qualification separate from PM recruiting remit and preserve existing outreach history.
+
+The Austin example uses `target_geography.country_codes = ["US"]`, an empty `localities` restriction (US-wide), and Austin as a preference. For a city-only scope, supply the approved normalized city values in `localities`; do not silently widen them. Preferred cities only affect prioritization, not eligibility.
+
+Both `eligible_for_invite` and `next_candidate_action` require `target_geography`, a nonempty `current_run`, and the private `linkedin_location_check` evidence described in references/records.md. Old callers without the new inputs cannot approve an invite. Checks must be from the current run and no more than 24 hours old; the host reopens/rechecks immediately before action. A current-run label is not a substitute for that real profile inspection. These pure helpers neither browse nor send.

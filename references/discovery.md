@@ -8,7 +8,7 @@ For each run, record scope, source access, date and a query/time budget. Stop at
 
 ## First: people search at target employers
 
-Use an authorized people-search interface, search-engine index, or user-supplied export. Search current company plus recruiting titles: recruiter, technical recruiter, talent acquisition, talent partner, sourcer. Run locally and without recruiter-location restrictions. Someone outside the city can cover its roles.
+Use an authorized people-search interface, search-engine index, or user-supplied export. Search current company plus recruiting titles: recruiter, technical recruiter, talent acquisition, talent partner, sourcer. Use the owner-approved personal-location filters. Broader search results are discovery leads only, never location-qualified candidates; a person covering local jobs may live outside the allowed geography.
 
 Example public-index queries (replace the example values):
 - site:linkedin.com/in "Example Software" "recruiter" "Austin"
@@ -44,7 +44,7 @@ Apollo people search supports company/title/location filters; it can discover re
 
 ## Verification and practical limits
 
-For each person separately check identity, current employer, recruiting function, market coverage, product relevance and career-level relevance. Save a short supporting excerpt and source/date for each important claim. “No evidence found” is different from “does not recruit product.”
+For each person on each run, open their full LinkedIn personal profile and verify the current personal location and identity. Then separately check current employer, recruiting function, market coverage, product relevance and career-level relevance. Company headquarters, US job postings, snippets and market coverage cannot establish personal location. Foreign locations are out of scope; inaccessible or ambiguous locations remain unverified and cannot be invited. Save a short supporting excerpt and source/date for each important claim. “No evidence found” is different from “does not recruit product.”
 
 Search indexes are incomplete and stale. Operators may not constrain results perfectly. Relative dates in snippets are unreliable, and old roles can match current queries. If direct profile access is blocked, do not bypass it or label the record live-verified. Preserve indexed evidence and leave the necessary check open.
 
@@ -58,3 +58,4 @@ Prefer a small pilot before scaling: compare distinct relevant people, ambiguous
 ## Manage the verification bottleneck
 
 Generate a reusable query plan, but execute a small diverse batch before expanding every company/title combination. Record each query's execution status using the ledger in records.md. For authorized invitation runs, verify and immediately invite each eligible person before researching the next; never accumulate verified eligible people into a later send queue. If a search surfaces more leads than can be checked within the budget, retain only the unverified backlog, clearly labeled incomplete, and process it one person at a time. Research-only runs can retain a verification backlog without sending. Report which verification dimensions remain unknown; a completed search is not a verified shortlist.
+

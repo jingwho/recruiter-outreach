@@ -19,6 +19,14 @@ def record(**changes):
 
 
 class Tests(unittest.TestCase):
+    def test_conflicting_location_check_requires_reverification(self):
+        first = record(linkedin_location_check={'country_code': 'US'})
+        second = record(linkedin_location_check={'country_code': 'GB'})
+        result = m.dedupe([first, second])[0]
+        self.assertEqual(result['category'], 'needs_checking')
+        self.assertIn('linkedin_location_check', result['conflicts'])
+        self.assertEqual(len(result['source_records']), 2)
+
     def test_linkedin_canonicalization(self):
         self.assertEqual(m.canonical_url('https://uk.linkedin.com/in/alex-example/?trk=x'), 'https://www.linkedin.com/in/alex-example')
 
@@ -137,3 +145,4 @@ class CoverageTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
