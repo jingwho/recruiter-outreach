@@ -70,3 +70,32 @@ python scripts/profile_buttons.py --input /private/tracker.xlsx --output /privat
 ```
 
 The private JSON file is an array of identity-verified direct LinkedIn `/in/` URLs. Matching cells become blue **Open profile** native hyperlinks; their actual destination remains available for deduplication and future reads. Search results and unverified profiles are not buttons. Statuses, notes and other sheets are preserved. Reopen and verify the staged workbook, then update the same tracker/Library item rather than creating a second list. CSV continues to use raw URLs. The helper neither contacts anyone nor opens a browser.
+
+### Resume from a manually maintained tracker
+
+Install `requirements.txt` first (this helper needs openpyxl, including for CSV).
+Compare two private snapshots without overwriting either, reconnecting accounts,
+repeating invitations, or generating a replacement list:
+
+```bash
+python scripts/tracker_review.py --current /private/current.xlsx --previous /private/previous.xlsx --sheet Recruiters --now 2026-11-18T15:00:00Z --output /private/review.json
+```
+
+Omit `--previous` for a first run: it reports identity ambiguities and due/undated pending checks, without labeling every existing row as new. The report records `baseline_present: false`.
+
+CSV and XLSX accept the simplified tracker's `Name`, `LinkedIn`, and `Status`
+headers. Native **Open profile** hyperlinks and simple literal `HYPERLINK("https://…", "label")` formulas retain their URL targets. Formula expressions and cell references are never evaluated; unsupported links are flagged for review.
+Other columns, including manual notes/statuses, are compared but never changed.
+The private JSON review contains only new, changed, removed, ambiguous or due
+records. Matching unchanged records are omitted. Missing/invalid links and
+repeated profile URLs require identity review, never name-based auto-merging.
+A URL match is not proof that a recruiter or their remit is verified.
+
+For optional 72-hour acceptance checks, add `Confirmed sent at` and
+`Last checked at` columns to a private staging snapshot (not the default user tracker) with timezone-aware ISO timestamps only when supported
+by observed evidence. Pending status alone does not supply a send time. Connected
+records are never due; an observed check at/after the due time suppresses that
+initial check. Earlier checks do not. Missing, invalid or future dates are flagged,
+not invented. Due items are **not scheduled** and authorize no live action.
+The output must be a new `.json` path. Keep snapshots/reviews outside the public
+repository; reconcile reviewed changes into the same original tracker separately.

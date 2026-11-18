@@ -63,3 +63,24 @@ Keep one current `status` per person (for example Not contacted, Invitation pend
 ## One-click profile links in the same tracker
 
 For identity-verified direct LinkedIn personal profiles, use blue **Open profile** native Excel hyperlink cells in the existing LinkedIn column. Never turn search results or unverified matches into buttons. Read identity from the hyperlink destination for deduplication; CSV retains raw URLs. See [records.md](references/records.md#one-click-profile-links-in-the-same-tracker) for the optional workbook helper and safe same-tracker update workflow. No outreach behavior changes.
+
+## Resume after manual tracker edits
+
+When continuing work from an existing manually maintained XLSX or CSV tracker,
+first run `scripts/tracker_review.py` against its latest private local copy. If an
+older private snapshot exists, supply `--previous` to identify changes; otherwise
+omit it for an initial ambiguity/due review. Install `requirements.txt` first.
+See the README's **Resume from a manually maintained tracker** example. The helper
+reads native links and simple literal Excel HYPERLINK formulas without evaluating
+expressions, never saves either input, and creates only a private JSON review.
+Do not present that review as a second recruiter list.
+
+Use the review to preserve owner status/note edits and identify duplicate or missing
+profile identities before further work. Missing confirmed send timestamps require
+checking authorized evidence; do not infer them from pending status or unstructured
+notes. Optional timestamp columns are for a private staging snapshot, not a reason
+to expand the default eight-column user tracker. Due items are not scheduled or
+verified by this helper. A continuation request or review output does not reinstate
+revoked sending permission, authorize new invitations, or permit account access.
+Continue discovery only within the user's current scope, update the same tracker
+after verification, and show only the meaningful change summary.
